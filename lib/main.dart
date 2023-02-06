@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Material App',
         initialRoute: HomeScreen.routerName,
-        theme: ThemeData.light(),
+        theme: Preferences.isDarkMode ? ThemeData.dark() : ThemeData.light(),
         routes: {
           HomeScreen.routerName: (_) => const HomeScreen(),
           SettingScreen.routerName: (_) => const SettingScreen(),
@@ -37,3 +37,6 @@ y getters*/
 
 /*NOTA: tambien pudimos utilizar un future builder para inicializar 
 las preferencias*/
+
+/*Nota: el objetivo de las preferencias no es ser un gestor de estado
+no redibuja los widgets, es solo para almacenar preferencias*/
