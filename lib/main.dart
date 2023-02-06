@@ -31,5 +31,9 @@ la inicializacion de las preferencias, y antes de esta ejecutamos
 WidgetsFlutterBinding.ensureInitialized() para asegurarnos de
 que primero inicialize los widgets antes del init de las preferencias*/
 
+/*Con esta implementacion desde el main podemos utilizar las 
+preferencias desde cualquier lugar de la aplicacion mediante setters
+y getters*/
+
 /*NOTA: tambien pudimos utilizar un future builder para inicializar 
 las preferencias*/
