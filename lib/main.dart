@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:preferences_app/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:preferences_app/screens/home_screen.dart';
 import 'package:preferences_app/screens/settings_screen.dart';
 import 'package:preferences_app/share_preferences/preferences.dart';
@@ -6,7 +8,13 @@ import 'package:preferences_app/share_preferences/preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Preferences.init();
-  return runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+          create: (_) => ThemeProvider(isDarkmode: Preferences.isDarkMode))
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +26,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Material App',
         initialRoute: HomeScreen.routerName,
-        theme: Preferences.isDarkMode ? ThemeData.dark() : ThemeData.light(),
+        theme: Provider.of<ThemeProvider>(context).currenteTheme,
         routes: {
           HomeScreen.routerName: (_) => const HomeScreen(),
           SettingScreen.routerName: (_) => const SettingScreen(),
@@ -40,3 +48,5 @@ las preferencias*/
 
 /*Nota: el objetivo de las preferencias no es ser un gestor de estado
 no redibuja los widgets, es solo para almacenar preferencias*/
+
+/*Modificamos el main, para agregar el provider*/

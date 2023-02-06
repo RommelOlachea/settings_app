@@ -20,5 +20,6 @@ Esta sección es corta, pero es vital para cualquier aplicación que necesite gu
 ## Paquetes utilizados
 
 shared_preferences: ^2.0.17
+provider: ^6.0.5
 
 Este paque nos permitira mantener y tener acceso a las preferencias de usuario la aplicacion.
