@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:preferences_app/screens/home_screen.dart';
 import 'package:preferences_app/screens/settings_screen.dart';
+import 'package:preferences_app/share_preferences/preferences.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Preferences.init();
+  return runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,9 +18,18 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Material App',
         initialRoute: HomeScreen.routerName,
+        theme: ThemeData.light(),
         routes: {
           HomeScreen.routerName: (_) => const HomeScreen(),
           SettingScreen.routerName: (_) => const SettingScreen(),
         });
   }
 }
+
+/*modicamos el main, para poderlo hacer async, y poder llamar 
+la inicializacion de las preferencias, y antes de esta ejecutamos
+WidgetsFlutterBinding.ensureInitialized() para asegurarnos de
+que primero inicialize los widgets antes del init de las preferencias*/
+
+/*NOTA: tambien pudimos utilizar un future builder para inicializar 
+las preferencias*/
